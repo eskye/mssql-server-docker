@@ -1,0 +1,17 @@
+version: '3.7'
+services: 
+    mssql:
+      image: mcr.microsoft.com/mssql/server:2019-latest
+      container_name: MSSQL-SERVER-2019
+      ports:
+       - "1433:1433"
+      environment:
+        - ACCEPT_EULA=Y
+        - MSSQL_PID=Developer
+        - SA_PASSWORD=Passw0rd1!
+        - MSSQL_AGENT_ENABLED=true
+
+
+        docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd \
+   -S localhost -U SA -P "<YourStrong@Passw0rd>" \
+   -Q 'ALTER LOGIN SA WITH PASSWORD="Password1!"'
